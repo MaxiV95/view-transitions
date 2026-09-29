@@ -1,10 +1,12 @@
 ---
 import Layout from "@layouts/Layout.astro";
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title="View Transitions">
   <div class="min-h-screen flex items-center justify-center">
-    <a transition:name={`Next`} class="btn bg-gray-500" href="/1">Start</a>
+    <a transition:name={`Next`} class="btn bg-gray-500" href={`${base}1`}>Start</a>
   </div>
 </Layout>
 

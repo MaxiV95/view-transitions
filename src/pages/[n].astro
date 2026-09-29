@@ -15,6 +15,7 @@ export function getStaticPaths() {
 }
 
 const { page, prev, next } = Astro.props;
+const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title="View Transitions">
@@ -23,13 +24,13 @@ const { page, prev, next } = Astro.props;
     <div class="grid grid-cols-2 gap-4 w-fit">
       {
         page.colors.map(({ name, slug, bg }) => (
-          <a transition:name={name} class:list={["btn", bg, page.padding]} href={`/${slug}`}>
+          <a transition:name={name} class:list={["btn", bg, page.padding]} href={`${base}${slug}`}>
             {name}
           </a>
         ))
       }
-      <a transition:name={`Prev`} class:list={["btn", "bg-gray-500", page.padding]} href={`/${prev.number}`}>Prev</a>
-      <a transition:name={`Next`} class:list={["btn", "bg-gray-500", page.padding]} href={`/${next.number}`}>Next</a>
+      <a transition:name={`Prev`} class:list={["btn", "bg-gray-500", page.padding]} href={`${base}${prev.number}`}>Prev</a>
+      <a transition:name={`Next`} class:list={["btn", "bg-gray-500", page.padding]} href={`${base}${next.number}`}>Next</a>
     </div>
   </div>
 </Layout>

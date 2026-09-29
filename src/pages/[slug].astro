@@ -15,13 +15,14 @@ export function getStaticPaths() {
 }
 
 const { color, prev, next } = Astro.props;
+const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title="View Transitions">
   <div class="min-h-screen flex items-center justify-center">
-    <a transition:name={`Prev`} class="btn bg-gray-500" href={`/${prev.slug}`}>Prev</a>
-    <a transition:name={color.name} class:list={["btn", color.bg]} href="/1">{color.name}</a>
-    <a transition:name={`Next`} class="btn bg-gray-500" href={`/${next.slug}`}>Next</a>
+    <a transition:name={`Prev`} class="btn bg-gray-500" href={`${base}${prev.slug}`}>Prev</a>
+    <a transition:name={color.name} class:list={["btn", color.bg]} href={`${base}1`}>{color.name}</a>
+    <a transition:name={`Next`} class="btn bg-gray-500" href={`${base}${next.slug}`}>Next</a>
   </div>
 </Layout>
 
