@@ -1,0 +1,24 @@
+---
+import Layout from "@layouts/Layout.astro";
+---
+
+<Layout title="View Transitions">
+  <div class="min-h-screen flex items-center justify-center">
+    <a transition:name={`Prev`} class="btn bg-gray-500" href="/color/red">Prev</a>
+    <a transition:name={`Yellow`} class="btn bg-yellow-500" href="/">Yellow</a>
+    <a transition:name={`Next`} class="btn bg-gray-500" href="/color/green">Next</a>
+  </div>
+</Layout>
+
+<style>
+  @reference "tailwindcss";
+  .btn {
+    @apply text-white 
+    text-center 
+    no-underline 
+    m-4 p-12 
+    rounded-md
+    hover:brightness-125
+    transition;
+  }
+</style>

@@ -4,14 +4,14 @@ import Layout from "@layouts/Layout.astro";
 
 <Layout title="View Transitions">
   <div class="min-h-screen flex flex-col items-center justify-center">
-    <h2>1</h2>
+    <h2>4</h2>
     <div class="grid grid-cols-2 gap-4 w-fit">
-      <a transition:name={`Blue`} class="btn bg-blue-500" href="/color/blue">Blue</a>
       <a transition:name={`Red`} class="btn bg-red-500" href="/color/red">Red</a>
-      <a transition:name={`Green`} class="btn bg-green-500" href="/color/green">Green</a>
       <a transition:name={`Yellow`} class="btn bg-yellow-500" href="/color/yellow">Yellow</a>
-      <a transition:name={`Prev`} class="btn bg-gray-500" href="/c">Prev</a>
-      <a transition:name={`Next`} class="btn bg-gray-500" href="/a">Next</a>
+      <a transition:name={`Blue`} class="btn bg-blue-500" href="/color/blue">Blue</a>
+      <a transition:name={`Green`} class="btn bg-green-500" href="/color/green">Green</a>
+      <a transition:name={`Prev`} class="btn bg-gray-500" href="/b">Prev</a>
+      <a transition:name={`Next`} class="btn bg-gray-500" href="/">Next</a>
     </div>
   </div>
 </Layout>
@@ -22,7 +22,7 @@ import Layout from "@layouts/Layout.astro";
     @apply text-white 
     text-center 
     no-underline 
-    m-4 p-4 
+    m-4 p-7 
     rounded-md
     hover:brightness-125
     transition;
