@@ -1,0 +1,48 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { pages } from "@data/pages";
+
+export function getStaticPaths() {
+  return pages.map((page, i) => ({
+    params: { n: String(page.number) },
+    props: {
+      page,
+      // Navegación circular: la primera enlaza con la última y viceversa
+      prev: pages[(i - 1 + pages.length) % pages.length],
+      next: pages[(i + 1) % pages.length],
+    },
+  }));
+}
+
+const { page, prev, next } = Astro.props;
+---
+
+<Layout title="View Transitions">
+  <div class="min-h-screen flex flex-col items-center justify-center">
+    <h2>{page.number}</h2>
+    <div class="grid grid-cols-2 gap-4 w-fit">
+      {
+        page.colors.map(({ name, slug, bg }) => (
+          <a transition:name={name} class:list={["btn", bg, page.padding]} href={`/${slug}`}>
+            {name}
+          </a>
+        ))
+      }
+      <a transition:name={`Prev`} class:list={["btn", "bg-gray-500", page.padding]} href={`/${prev.number}`}>Prev</a>
+      <a transition:name={`Next`} class:list={["btn", "bg-gray-500", page.padding]} href={`/${next.number}`}>Next</a>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  @reference "tailwindcss";
+  .btn {
+    @apply text-white
+    text-center
+    no-underline
+    m-4
+    rounded-md
+    hover:brightness-125
+    transition;
+  }
+</style>

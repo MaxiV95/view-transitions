@@ -1,0 +1,39 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { colors } from "@data/colors";
+
+export function getStaticPaths() {
+  return colors.map((color, i) => ({
+    params: { slug: color.slug },
+    props: {
+      color,
+      // Navegación circular: el primero enlaza con el último y viceversa
+      prev: colors[(i - 1 + colors.length) % colors.length],
+      next: colors[(i + 1) % colors.length],
+    },
+  }));
+}
+
+const { color, prev, next } = Astro.props;
+---
+
+<Layout title="View Transitions">
+  <div class="min-h-screen flex items-center justify-center">
+    <a transition:name={`Prev`} class="btn bg-gray-500" href={`/${prev.slug}`}>Prev</a>
+    <a transition:name={color.name} class:list={["btn", color.bg]} href="/1">{color.name}</a>
+    <a transition:name={`Next`} class="btn bg-gray-500" href={`/${next.slug}`}>Next</a>
+  </div>
+</Layout>
+
+<style>
+  @reference "tailwindcss";
+  .btn {
+    @apply text-white
+    text-center
+    no-underline
+    m-4 p-12
+    rounded-md
+    hover:brightness-125
+    transition;
+  }
+</style>
